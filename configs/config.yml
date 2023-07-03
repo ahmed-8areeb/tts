@@ -1,0 +1,69 @@
+config_model:
+#  encodr
+  kernal_size_encoder: 5
+  n_convelution_encoder: 3
+  emb_dim_encoder: 512
+
+  sympols_number: 88
+  emb_dim_symbols: 512
+
+  # Attention prams
+  rnn_atten_dim: 1024
+  atten_dim: 128
+
+  # decodr
+  frames_per_step_num: 3
+  number_mel_channels: 80
+  dim_predent: 256
+  rnn_dim_decoder: 1024
+  convergenc_threshold: 0.5
+  decoder_max_steps: 1000  
+  decoder_dropout_probabily: 0.1
+  attention_dropout_probabily: 0.1
+  
+  # Mel-post processing network parameters
+  kernal_size_postnet: 5
+  postnet_dim_emb: 512
+  number_conv_postnet: 5
+
+  # Location Layer parameters
+  kernal_size_attention_location: 31
+  numbre_filters_attention_location: 32
+
+# preprocess prams
+
+config_preprocess:
+  # sample rate
+  lenght_hop: 275
+  sample_rate: 22050
+  number_mel_channels: 80
+  max_f: 11025.0
+  fft_number: 4096
+  window_len: 1102
+  min_f: 0.0
+
+# dataset prams
+
+config_dataset:
+
+  mel_folder_path: 'processed/mel'
+  training_data_path: 'processed/train.txt'
+
+
+# training prams
+config_training:
+  workers_number: 8
+  batch_size: 2
+  maximum_number_epochs: 400
+  clip_grad: 1.0
+
+# optimizer prams
+config_optimizer:
+  optimizer: 'Adam'
+  scheduler: 'WarmupLR'
+  weight_decay: 1.e-6
+  learning_rate: 1e-3
+  config_schedular:
+    warmup_steps: 12000
+    min_lr: 1.e-5
+
